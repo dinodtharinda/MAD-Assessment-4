@@ -16,4 +16,12 @@ public class CustomerRepo {
     public Boolean registerCustomer(Customer customer){
       return   dbHelper.insertCustomer(customer);
     }
+
+    public Customer loginCustomer(String email){
+
+       return  dbHelper.getCustomerByEmail(email);
+
+    }
+
+
 }

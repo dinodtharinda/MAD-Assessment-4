@@ -2,8 +2,10 @@ package com.example.mad_assessment_4.data.DB;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -32,10 +34,12 @@ public class DBHelper extends SQLiteOpenHelper {
                     ")";
 
     private final SQLiteDatabase DB = this.getWritableDatabase();
-
+    private Context context;
 
     public DBHelper(@Nullable Context context) {
+
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.context = context;
     }
 
     @Override
@@ -63,4 +67,51 @@ public class DBHelper extends SQLiteOpenHelper {
         return  result != -1;
 
     }
+
+    public Customer getCustomerByEmail(String email) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] columns = {
+                COLUMN_CUSTOMER_ID,
+                COLUMN_CUSTOMER_NAME,
+                COLUMN_CUSTOMER_EMAIL,
+                COLUMN_CUSTOMER_PHONE,
+                COLUMN_CUSTOMER_PASSWORD,
+                COLUMN_CUSTOMER_ADDRESS
+        };
+        String selection = COLUMN_CUSTOMER_EMAIL + " = ?";
+        String[] selectionArgs = { email };
+
+        Cursor cursor = db.query(
+                TABLE_CUSTOMER,   // The table to query
+                columns,          // The array of columns to return (pass null to get all)
+                selection,        // The columns for the WHERE clause
+                selectionArgs,    // The values for the WHERE clause
+                null,             // Group the rows
+                null,             // Filter by row groups
+                null              // The sort order
+        );
+
+        if (cursor != null && cursor.moveToFirst()) {
+            // Extract data from the cursor and create a Customer object
+            int id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_CUSTOMER_ID));
+            String name = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CUSTOMER_NAME));
+            String phone = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CUSTOMER_PHONE));
+            String password = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CUSTOMER_PASSWORD));
+            String address = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CUSTOMER_ADDRESS));
+
+            cursor.close();
+            return new Customer(id, name, email, password, phone, address);
+        } else {
+            if (cursor != null) {
+                cursor.close();
+            }
+
+            return null;
+        }
+
+
+    }
+
+
+
 }
