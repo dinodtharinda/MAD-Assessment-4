@@ -8,4 +8,7 @@
     <string name="continue_as">Continue as</string>
     <string name="guest">Guest </string>
     <string name="already_have_account">I already have an account</string>
+    <string name="name">Name</string>
+    <string name="telephone_number">Telephone Number</string>
+    <string name="address">Address</string>
 </resources>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity"
+    tools:context=".views.LoginActivity"
     android:padding="16dp"
     >
 
@@ -85,7 +85,7 @@
             android:text="@string/don_t_have_an_account"
             android:textStyle="bold" />
         <Button
-            android:id="@+id/btnRegister"
+            android:id="@+id/btnGoRegister"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:text="@string/register"
