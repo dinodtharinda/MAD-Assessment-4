@@ -45,21 +45,21 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               if(validateFields()){
-                   String email = etEmail.getText().toString();
-                   String password = etPassword.getText().toString();
-                  Boolean isLog = customerController.loginCustomer(email,password);
+//               if(validateFields()){
+//                   String email = etEmail.getText().toString();
+//                   String password = etPassword.getText().toString();
+//                  Boolean isLog = customerController.loginCustomer(email,password);
+//
+//                  if(isLog){
+//                      startActivity(homeScreen);
+//                  }else{
+//                      Toast.makeText(LoginActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
+//                  }
+//               }
 
-                  if(isLog){
-                      startActivity(homeScreen);
-                  }else{
-                      Toast.makeText(LoginActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
-                  }
-               }
+                startActivity(homeScreen);
             }
         });
-
-
     }
 
     private boolean validateFields() {

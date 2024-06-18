@@ -15,6 +15,8 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "pizza_shop.db";
     private static final int DATABASE_VERSION = 1;
 
+
+    //Customer database
     public static final String TABLE_CUSTOMER = "customer";
     public static final String COLUMN_CUSTOMER_ID = "id";
     public static final String COLUMN_CUSTOMER_NAME = "name";
