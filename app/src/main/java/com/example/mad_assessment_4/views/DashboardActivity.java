@@ -1,12 +1,13 @@
 package com.example.mad_assessment_4.views;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -18,14 +19,14 @@ import com.example.mad_assessment_4.views.fragments.OrdersFragment;
 import com.example.mad_assessment_4.views.fragments.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class HomeActivity extends AppCompatActivity {
+public class DashboardActivity extends AppCompatActivity {
     private BottomNavigationView bnvHome;
     private FrameLayout flHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_dashboard);
 
         bnvHome = findViewById(R.id.bnvHome);
         flHome = findViewById(R.id.flHome);
@@ -61,4 +62,6 @@ public class HomeActivity extends AppCompatActivity {
         }
         fragmentTransaction.commit();
     }
+
+
 }

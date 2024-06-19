@@ -3,13 +3,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".views.fragments.ProfileFragment">
-
-
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Profile Fragment" />
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tbProfile"
+            app:title="Profile"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+
+        <ImageView
+            android:id="@+id/ivProfile"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_marginTop="20dp"
+            android:src="@color/primaryColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toBottomOf="@id/tbProfile" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
 
 </FrameLayout>

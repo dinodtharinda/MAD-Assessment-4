@@ -7,13 +7,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mad_assessment_4.R;
 import com.example.mad_assessment_4.controllers.CustomerController;
+import com.example.mad_assessment_4.utils.Constants;
+import com.example.mad_assessment_4.utils.Helper;
 
 public class LoginActivity extends AppCompatActivity {
-    Button btnLogin, btnGoRegister,btnGuest;
+    Button btnLogin, btnGoRegister;
+
+    TextView btnGuest;
     EditText etEmail,etPassword;
     CustomerController customerController;
 
@@ -27,12 +33,13 @@ public class LoginActivity extends AppCompatActivity {
 
         btnLogin = findViewById(R.id.btnLogin);
         btnGoRegister = findViewById(R.id.btnGoRegister);
+        btnGuest = findViewById(R.id.btnContinueGuest);
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
 
 
         Intent registerScreen = new Intent(this,RegisterActivity.class);
-        Intent homeScreen = new Intent(this,HomeActivity.class);
+        Intent homeScreen = new Intent(this, DashboardActivity.class);
 
         btnGoRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,22 +49,28 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        btnGuest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Helper().clearSharedPreferences(LoginActivity.this);
+                startActivity(homeScreen);
+            }
+        });
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//               if(validateFields()){
-//                   String email = etEmail.getText().toString();
-//                   String password = etPassword.getText().toString();
-//                  Boolean isLog = customerController.loginCustomer(email,password);
-//
-//                  if(isLog){
-//                      startActivity(homeScreen);
-//                  }else{
-//                      Toast.makeText(LoginActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
-//                  }
-//               }
+               if(validateFields()){
+                   String email = etEmail.getText().toString();
+                   String password = etPassword.getText().toString();
+                  boolean isLog = customerController.loginCustomer(email,password,LoginActivity.this);
+                  if(isLog){
+                      startActivity(homeScreen);
+                  }else{
+                      Toast.makeText(LoginActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
+                  }
+               }
 
-                startActivity(homeScreen);
             }
         });
     }

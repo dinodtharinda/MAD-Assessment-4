@@ -6,6 +6,8 @@ import android.widget.Toast;
 
 import com.example.mad_assessment_4.data.models.Customer;
 import com.example.mad_assessment_4.data.repositories.CustomerRepo;
+import com.example.mad_assessment_4.utils.Constants;
+import com.example.mad_assessment_4.utils.Helper;
 
 import java.util.Objects;
 
@@ -22,15 +24,28 @@ public class CustomerController {
         return customerRepo.registerCustomer(customer);
     }
 
-    public Boolean loginCustomer(String email, String password){
-       Customer customer = customerRepo.loginCustomer(email);
-       if(customer != null){
-           Log.e("customer",customer.getPassword());
-           return Objects.equals(customer.getPassword(), password);
-       }else{
-           Toast.makeText(context,"User Not found",Toast.LENGTH_LONG).show();
-           return false;
-       }
+    public boolean loginCustomer(String email, String password, Context context) {
+        // Attempt to retrieve customer information based on email
+        Customer customer = customerRepo.loginCustomer(email);
 
+        if (customer != null) {
+            Log.e("Customer", "Password: " + customer.getPassword());
+
+            // Check if the provided password matches the customer's stored password
+            if (Objects.equals(customer.getPassword(), password)) {
+                // Save the customer's ID to SharedPreferences upon successful login
+                new Helper().saveIntToSharedPref(context, Constants.USER_ID, customer.getUserId());
+                return true; // Return true indicating successful login
+            } else {
+                // Password does not match
+                Toast.makeText(context, "Incorrect password", Toast.LENGTH_LONG).show();
+                return false; // Return false indicating failed login
+            }
+        } else {
+            // Customer with the given email not found
+            Toast.makeText(context, "User not found", Toast.LENGTH_LONG).show();
+            return false; // Return false indicating failed login
+        }
     }
+
 }
