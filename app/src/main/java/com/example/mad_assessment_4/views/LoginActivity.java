@@ -65,6 +65,8 @@ public class LoginActivity extends AppCompatActivity {
                    String password = etPassword.getText().toString();
                   boolean isLog = customerController.loginCustomer(email,password,LoginActivity.this);
                   if(isLog){
+                      etEmail.setText("");
+                      etPassword.setText("");
                       startActivity(homeScreen);
                   }else{
                       Toast.makeText(LoginActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();

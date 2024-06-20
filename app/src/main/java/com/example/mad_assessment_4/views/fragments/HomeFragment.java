@@ -25,7 +25,7 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         tvHome = view.findViewById(R.id.tvHome);
-        int userId =new Helper().getIntFromSharedPref(getActivity(),Constants.USER_ID);
+        int userId =Helper.getIntFromSharedPref(getActivity(),Constants.USER_ID);
 
         Log.e("User id",Integer.toString(userId));
 

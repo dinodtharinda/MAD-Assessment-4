@@ -34,7 +34,7 @@ public class CustomerController {
             // Check if the provided password matches the customer's stored password
             if (Objects.equals(customer.getPassword(), password)) {
                 // Save the customer's ID to SharedPreferences upon successful login
-                new Helper().saveIntToSharedPref(context, Constants.USER_ID, customer.getUserId());
+               Helper.saveIntToSharedPref(context, Constants.USER_ID, customer.getUserId());
                 return true; // Return true indicating successful login
             } else {
                 // Password does not match
