@@ -6,6 +6,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".views.fragments.ProfileFragment">
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:visibility="invisible"
+        android:id="@+id/clScreen"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -32,7 +34,154 @@
             app:layout_constraintTop_toBottomOf="@id/tbProfile" />
 
 
+        <LinearLayout
+
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/ivProfile"
+            android:layout_margin="10dp"
+            app:layout_constraintBottom_toBottomOf="@id/btnLogout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tlName"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:padding="0dp"
+                android:hint="@string/name"
+                android:textColorHint="@color/lightGrey">
+
+                <EditText
+                    android:id="@+id/etName"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:importantForAutofill="no"
+                    tools:ignore="LabelFor" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tlPhone"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:padding="0dp"
+                android:hint="@string/telephone_number"
+                android:textColorHint="@color/lightGrey">
+
+                <EditText
+                    android:id="@+id/etPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:importantForAutofill="no"
+                    tools:ignore="LabelFor" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tlAddress"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:padding="0dp"
+                android:hint="@string/address"
+                android:textColorHint="@color/lightGrey">
+
+                <EditText
+                    android:id="@+id/etAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:importantForAutofill="no"
+                    tools:ignore="LabelFor" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tlEmail"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:hint="@string/email"
+                android:padding="0dp"
+                android:textColorHint="@color/lightGrey">
+
+                <EditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:importantForAutofill="no"
+                    android:inputType="textEmailAddress"
+                    tools:ignore="LabelFor" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tlPassword"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:padding="0dp"
+                android:hint="@string/password"
+                android:textColorHint="@color/lightGrey">
+
+                <EditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:importantForAutofill="no"
+                    android:inputType="textPassword"
+                    tools:ignore="LabelFor" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <Button
+                android:id="@+id/btnSaveProfile"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="@string/save_profile"
+                android:textSize="17sp"
+                app:cornerRadius="5dp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                />
+        </LinearLayout>
+            <Button
+                android:id="@+id/btnLogout"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:backgroundTint="@color/red"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="Logout"
+                android:textSize="17sp"
+                android:layout_margin="10sp"
+                app:cornerRadius="5sp"
+                android:layout_gravity="bottom"
+                />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+  <RelativeLayout
+      android:id="@+id/rlLoginMsg"
+      android:visibility="visible"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:gravity="center"
+      >
+      <TextView
+          android:id="@+id/tvMsg"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:text="You are not logged in, Please login to continue"
+          android:textSize="17sp"
+          android:textColor="@color/lightGrey"
+          
+          />
+      <Button
+          android:id="@+id/btnLogin"
+          android:layout_width="match_parent"
+          android:layout_height="60dp"
+          android:text="@string/login"
+          android:textSize="17sp"
+          app:cornerRadius="5dp"
+          android:textStyle="bold"
+          android:layout_margin="10dp"
+          android:layout_below="@id/tvMsg"
+          />
+  </RelativeLayout>
 
 
 

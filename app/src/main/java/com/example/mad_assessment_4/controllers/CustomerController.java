@@ -48,4 +48,9 @@ public class CustomerController {
         }
     }
 
+    public void logout(Context context){
+       Helper.clearSharedPreferences(context);
+    }
+
+
 }

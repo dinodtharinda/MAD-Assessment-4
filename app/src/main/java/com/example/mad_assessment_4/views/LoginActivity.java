@@ -54,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 new Helper().clearSharedPreferences(LoginActivity.this);
                 startActivity(homeScreen);
+                finish();
             }
         });
 
@@ -68,6 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                       etEmail.setText("");
                       etPassword.setText("");
                       startActivity(homeScreen);
+                      finish();
                   }else{
                       Toast.makeText(LoginActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
                   }

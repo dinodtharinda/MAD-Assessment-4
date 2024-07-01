@@ -2,12 +2,15 @@ package com.example.mad_assessment_4.utils;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -15,6 +18,8 @@ import androidx.core.app.ActivityCompat;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 
 public class Helper {
 
@@ -70,29 +75,25 @@ public class Helper {
         editor.apply(); // or editor.commit(); - apply() is asynchronous, while commit() is synchronous
     }
 
-    public static void saveImageToExternalStorage(Bitmap bitmap, Context context,String imgName) {
+    public static void saveImageToExternalStorage(Bitmap bitmap, Context context, String imgName) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (context.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                return; // Exit method if permission is not granted
             }
         }
+
         String root = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
         File myDir = new File(root + "/MyAppImages");
-        myDir.mkdirs();
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (context.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+        if (!myDir.exists()) {
+            if (!myDir.mkdirs()) {
+                Log.e("saveImageToExternalStorage", "Failed to create directory: " + myDir.getAbsolutePath());
+                Toast.makeText(context, "Failed to create directory", Toast.LENGTH_SHORT).show();
+                return;
             }
         }
 
-        if (!myDir.exists() && !myDir.mkdirs()) {
-            Log.e("saveImageToExternalStorage", "Failed to create directory: " + myDir.getAbsolutePath());
-            Toast.makeText(context, "Failed to create directory", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        String fileName = imgName;
+        String fileName = imgName + ".jpg"; // Append .jpg to the image name
         File file = new File(myDir, fileName);
         if (file.exists()) file.delete();
         try {
@@ -102,9 +103,11 @@ public class Helper {
             out.close();
             Toast.makeText(context, "Image saved to " + file.getAbsolutePath(), Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
-            Log.e("camara-error",e.getMessage());
+            Log.e("saveImageToExternalStorage", e.getMessage());
             e.printStackTrace();
             Toast.makeText(context, "Failed to save image", Toast.LENGTH_SHORT).show();
         }
     }
+
+
 }

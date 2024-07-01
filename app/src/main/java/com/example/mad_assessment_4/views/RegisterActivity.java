@@ -49,6 +49,8 @@ public class RegisterActivity extends AppCompatActivity {
 
                     customerController.registerCustomer(new Customer(name,email,password,phone,address));
                     Toast.makeText(RegisterActivity.this, "User added successfully", Toast.LENGTH_SHORT).show();
+                    startActivity(loginScreen);
+                    finish();
                 }
 
             }

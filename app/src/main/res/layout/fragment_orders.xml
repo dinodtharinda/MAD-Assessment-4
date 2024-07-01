@@ -3,13 +3,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".views.fragments.OrdersFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:id="@+id/clScreen"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:gravity="center"
+           android:text="Order Fragment" />
+   </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <RelativeLayout
+        tools:visibility="invisible"
+        android:id="@+id/rlLoginMsg"
+        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:text="Order Fragment" />
+        >
+        <TextView
+            android:id="@+id/tvMsg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="You are not logged in, Please login to continue"
+            android:textSize="17sp"
+            android:textColor="@color/lightGrey"
+
+            />
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@id/tvMsg"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/login"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:cornerRadius="5dp" />
+    </RelativeLayout>
+
 
 </FrameLayout>
