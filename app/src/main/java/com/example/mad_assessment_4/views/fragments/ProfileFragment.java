@@ -36,7 +36,7 @@ import java.io.File;
 public class ProfileFragment extends Fragment {
 
     ImageView ivProfile;
-    private Button btnLogout;
+    private Button btnLogout,btnLogin;
     private static final int REQUEST_CODE = 22;
 
     int userId ;
@@ -59,6 +59,9 @@ public class ProfileFragment extends Fragment {
         btnLogout = view.findViewById(R.id.btnLogout);
         clScreen = view.findViewById(R.id.clScreen);
         rlLoginMsg = view.findViewById(R.id.rlLoginMsg);
+        btnLogin = view.findViewById(R.id.btnLogin);
+
+
 
 
 
@@ -70,6 +73,14 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 customerController.logout(getActivity());
+                startActivity(loginScreen);
+                getActivity().finish();
+            }
+        });
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 startActivity(loginScreen);
                 getActivity().finish();
             }

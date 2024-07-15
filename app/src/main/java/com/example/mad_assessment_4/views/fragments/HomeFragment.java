@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.mad_assessment_4.R;
@@ -18,13 +19,14 @@ import com.example.mad_assessment_4.views.DashboardActivity;
 public class HomeFragment extends Fragment {
 
     TextView tvHome;
-
+    Button btnLogin;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         tvHome = view.findViewById(R.id.tvHome);
+
         int userId =Helper.getIntFromSharedPref(getActivity(),Constants.USER_ID);
 
         Log.e("User id",Integer.toString(userId));
