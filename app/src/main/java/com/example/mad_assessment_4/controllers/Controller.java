@@ -2,6 +2,7 @@ package com.example.mad_assessment_4.controllers;
 
 import android.content.Context;
 
+import com.example.mad_assessment_4.data.models.Pizza;
 import com.example.mad_assessment_4.data.repositories.CustomerRepo;
 import com.example.mad_assessment_4.data.repositories.Repository;
 
@@ -13,5 +14,9 @@ public class Controller {
     public Controller(Context context){
         repository = new Repository(context);
         this.context = context;
+    }
+
+    public boolean insertPizza(Pizza pizza){
+      return   repository.insertPizza(pizza);
     }
 }
