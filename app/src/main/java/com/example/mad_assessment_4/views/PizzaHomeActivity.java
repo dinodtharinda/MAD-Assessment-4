@@ -39,6 +39,8 @@ public class PizzaHomeActivity extends AppCompatActivity {
 
     int pizzaId;
 
+    Intent homeScreen;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +54,7 @@ public class PizzaHomeActivity extends AppCompatActivity {
         btnSave = findViewById(R.id.btnSave);
         ivPizzaImage.setOnClickListener(v -> openGallery());
         btnSave.setOnClickListener(v->savePizza());
-
+        homeScreen = new Intent(this, DashboardActivity.class);
     }
 
     private void savePizza() {
@@ -95,9 +97,8 @@ public class PizzaHomeActivity extends AppCompatActivity {
 
       boolean result =  controller.insertPizza(pizza);
       if(result ){
+        startActivity(homeScreen);
         finish();
-      }else{
-
       }
     }
 

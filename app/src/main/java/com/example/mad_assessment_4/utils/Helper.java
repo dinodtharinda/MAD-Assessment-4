@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -106,6 +108,19 @@ public class Helper {
             Log.e("saveImageToExternalStorage", e.getMessage());
             e.printStackTrace();
             Toast.makeText(context, "Failed to save image", Toast.LENGTH_SHORT).show();
+        }
+
+
+    }
+
+
+    public static Bitmap getImageFromExternalStorage(String imagePath) {
+        File imgFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+"/MyAppImages/"+imagePath+".jpg");
+        if (imgFile.exists()) {
+            return BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+        } else {
+            Log.e("getImageFromExternalStorage", "File does not exist: " + imagePath);
+            return null;
         }
     }
 

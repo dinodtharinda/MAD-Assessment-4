@@ -6,6 +6,8 @@ import com.example.mad_assessment_4.data.models.Pizza;
 import com.example.mad_assessment_4.data.repositories.CustomerRepo;
 import com.example.mad_assessment_4.data.repositories.Repository;
 
+import java.util.List;
+
 public class Controller {
 
     final Repository repository;
@@ -18,5 +20,10 @@ public class Controller {
 
     public boolean insertPizza(Pizza pizza){
       return   repository.insertPizza(pizza);
+    }
+
+
+    public List<Pizza> getAllPizza(){
+        return repository.getAllPizzas();
     }
 }

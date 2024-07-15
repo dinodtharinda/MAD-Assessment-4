@@ -14,12 +14,13 @@
         android:backgroundTint="@color/white"
         android:elevation="4dp" />
 
-    <TextView
-        android:id="@+id/tvHome"
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@id/toolbar"
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/toolbar"
-        android:gravity="center"
-        android:text="Home Fragment" />
+        android:padding="8dp"
+        android:clipToPadding="false"
+        android:scrollbars="vertical" />
 
 </RelativeLayout>
