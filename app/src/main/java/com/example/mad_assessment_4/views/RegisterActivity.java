@@ -63,6 +63,7 @@ public class RegisterActivity extends AppCompatActivity {
                 startActivity(loginScreen);
             }
         });
+
     }
 
     private boolean validateFields() {

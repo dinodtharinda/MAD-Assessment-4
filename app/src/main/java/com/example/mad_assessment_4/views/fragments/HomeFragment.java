@@ -94,7 +94,7 @@ public class HomeFragment extends Fragment {
         Log.e("User id", Integer.toString(userId));
 
         if (userId > 0) {
-            tvHome.setText("Logged in user");
+//            tvHome.setText("Logged in user");
         } else {
 //            tvHome.setText("Guest user");
         }

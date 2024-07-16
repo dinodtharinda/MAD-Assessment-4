@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:contex50dpt=".views.PizzaDetailsActivity">
+
+    <ImageView
+        android:id="@+id/btnBack"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/back_arrow"
+        android:rotation="180"
+
+        />
+
+    <!-- Pizza Image -->
+    <ImageView
+        android:id="@+id/imageViewPizza"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/image_placeholder"
+        app:layout_constraintBottom_toTopOf="@id/textViewPizzaName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.35"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnBack"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:background="?attr/selectableItemBackground"
+        android:elevation="4dp"
+        android:clipToOutline="true"
+        android:backgroundTint="?attr/colorSurface"
+        app:cornerRadius="16dp"/>
+
+    <!-- Pizza Name -->
+    <TextView
+        android:id="@+id/textViewPizzaName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Pizza Name"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageViewPizza" />
+
+    <!-- Pizza Description -->
+    <TextView
+        android:id="@+id/textViewPizzaDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Pizza Description"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewPizzaName"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Pizza Size -->
+    <TextView
+        android:id="@+id/textViewPizzaSize"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Size: Large"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewPizzaDescription"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Pizza Price -->
+    <TextView
+        android:id="@+id/textViewPizzaPrice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Price: $9.99"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewPizzaSize"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Quantity Controls -->
+    <LinearLayout
+        android:id="@+id/linearLayoutQuantity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewPizzaPrice"
+        android:layout_marginTop="16dp"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/buttonDecreaseQuantity"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:text="-"
+            android:background="@drawable/quantity_button_bg"
+            android:textColor="@android:color/white"
+            android:textSize="25sp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textAlignment="center"/>
+
+
+        <TextView
+            android:id="@+id/textViewQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp" />
+        <TextView
+            android:id="@+id/buttonIncreaseQuantity"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:text="+"
+            android:background="@drawable/quantity_button_bg"
+            android:textColor="@android:color/white"
+            android:textSize="25sp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textAlignment="center"/>
+
+    </LinearLayout>
+
+    <!-- Add to Cart Button -->
+    <Button
+        android:id="@+id/buttonAddToCart"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Add to Cart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayoutQuantity"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="?attr/colorPrimary"
+        android:textColor="@android:color/white"
+        android:background="@drawable/rounded_button_bg"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

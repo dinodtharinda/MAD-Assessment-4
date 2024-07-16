@@ -119,7 +119,7 @@ public class Helper {
         if (imgFile.exists()) {
             return BitmapFactory.decodeFile(imgFile.getAbsolutePath());
         } else {
-            Log.e("getImageFromExternalStorage", "File does not exist: " + imagePath);
+            Log.e("getImageFromExternalStorage", "File does not exist: " + Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)+"/MyAppImages/"+imagePath+".jpg");
             return null;
         }
     }

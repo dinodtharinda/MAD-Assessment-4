@@ -1,6 +1,7 @@
 package com.example.mad_assessment_4.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.mad_assessment_4.R;
 import com.example.mad_assessment_4.data.models.Pizza;
 import com.example.mad_assessment_4.utils.Helper;
+import com.example.mad_assessment_4.views.PizzaDetailsActivity;
 
 import java.util.List;
 
@@ -36,12 +38,16 @@ public class MyGridAdapter extends RecyclerView.Adapter<MyGridAdapter.GridViewHo
     @Override
     public void onBindViewHolder(@NonNull GridViewHolder holder, int position) {
         Pizza data = dataList.get(position);
-
         // Bind data to views
         holder.textViewName.setText(data.getName());
-
         holder.tvPrice.setText(String.valueOf(data.getPrice()));
        holder.imageView.setImageBitmap(Helper.getImageFromExternalStorage(data.getName()));
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, PizzaDetailsActivity.class);
+            intent.putExtra("pizza_id", data.getId());
+            context.startActivity(intent);
+        });
     }
 
     @Override

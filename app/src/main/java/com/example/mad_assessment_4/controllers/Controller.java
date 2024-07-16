@@ -26,4 +26,8 @@ public class Controller {
     public List<Pizza> getAllPizza(){
         return repository.getAllPizzas();
     }
+
+    public Pizza getPizzaDetailsById(int id){
+        return repository.getPizzaDetailById(id);
+    }
 }

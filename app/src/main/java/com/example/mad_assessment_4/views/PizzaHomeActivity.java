@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,13 +20,14 @@ import com.example.mad_assessment_4.R;
 import com.example.mad_assessment_4.controllers.Controller;
 import com.example.mad_assessment_4.data.models.Pizza;
 import com.example.mad_assessment_4.utils.Helper;
+import com.example.mad_assessment_4.utils.Permissions;
 
 import java.io.IOException;
 import java.util.UUID;
 
 public class PizzaHomeActivity extends AppCompatActivity {
 
-    private static final int PICK_IMAGE_REQUEST = 1;
+    private static final int PICK_IMAGE_REQUEST = 22;
     private EditText etName, etDescription, etPrice;
     private Spinner spinnerSize;
     private ImageView ivPizzaImage;
@@ -38,7 +40,7 @@ public class PizzaHomeActivity extends AppCompatActivity {
     Bitmap photo;
 
     int pizzaId;
-
+    private ImageView btnBack;
     Intent homeScreen;
 
     @Override
@@ -52,9 +54,29 @@ public class PizzaHomeActivity extends AppCompatActivity {
         spinnerSize = findViewById(R.id.spinnerSize);
         ivPizzaImage = findViewById(R.id.ivPizzaImage);
         btnSave = findViewById(R.id.btnSave);
-        ivPizzaImage.setOnClickListener(v -> openGallery());
+        btnBack = findViewById(R.id.btnBack);
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        ivPizzaImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Permissions.checkAllPermissions(PizzaHomeActivity.this)) {
+                    openGallery();
+                } else {
+                    Permissions.requestAllPermissions(PizzaHomeActivity.this);
+                }
+            }
+        });
         btnSave.setOnClickListener(v->savePizza());
         homeScreen = new Intent(this, DashboardActivity.class);
+
+
+
     }
 
     private void savePizza() {
@@ -89,8 +111,14 @@ public class PizzaHomeActivity extends AppCompatActivity {
             return;
         }
 
-        // Save image to external storage using Helper method
-        Helper.saveImageToExternalStorage(photo, this, name);
+
+        if (Permissions.checkAllPermissions(this)) {
+            Helper.saveImageToExternalStorage(photo, this, name);
+        } else {
+            Permissions.requestAllPermissions(this);
+        }
+
+
 
         // Optionally, save Pizza object to database or perform other operations
         Pizza pizza = new Pizza(0, name, description, name, spinnerSize.getSelectedItem().toString(), false, price);

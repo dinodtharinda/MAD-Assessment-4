@@ -50,6 +50,7 @@ public class DashboardActivity extends AppCompatActivity {
         });
 
         loadFragment(new HomeFragment(),true);
+
     }
 
     private void loadFragment(Fragment fragment, boolean isAppInitialized ){

@@ -54,20 +54,13 @@ public class ProfileFragment extends Fragment {
 
         customerController = new CustomerController(getActivity());
 
-
         ivProfile = view.findViewById(R.id.ivProfile);
         btnLogout = view.findViewById(R.id.btnLogout);
         clScreen = view.findViewById(R.id.clScreen);
         rlLoginMsg = view.findViewById(R.id.rlLoginMsg);
         btnLogin = view.findViewById(R.id.btnLogin);
 
-
-
-
-
         loginScreen = new Intent(getActivity(), LoginActivity.class);
-
-
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override

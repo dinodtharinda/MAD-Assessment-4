@@ -21,4 +21,8 @@ public class Repository {
     public List<Pizza> getAllPizzas(){
         return dbHelper.getAllPizzas();
     }
+
+    public Pizza getPizzaDetailById(int id){
+        return dbHelper.getPizzaById(id);
+    }
 }
