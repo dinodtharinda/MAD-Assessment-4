@@ -1,22 +1,33 @@
+// Order.java
 package com.example.mad_assessment_4.data.models;
 
 import java.util.Date;
 import java.util.List;
 
 public class Order {
+    private int orderId;
     private int userId;
-    private Date orderDate;
-    private List<CartItem> cartItems;
+    private String date;
     private double totalPrice;
+    private List<CartItem> cartItems;
 
-    public Order(int userId, Date orderDate, List<CartItem> cartItems, double totalPrice) {
+    // Constructor, getters and setters
+    public Order(int orderId, int userId, String date, double totalPrice, List<CartItem> cartItems) {
+        this.orderId = orderId;
         this.userId = userId;
-        this.orderDate = orderDate;
-        this.cartItems = cartItems;
+        this.date = date;
         this.totalPrice = totalPrice;
+        this.cartItems = cartItems;
     }
 
-    // Getters and setters
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
+
     public int getUserId() {
         return userId;
     }
@@ -25,20 +36,12 @@ public class Order {
         this.userId = userId;
     }
 
-    public Date getOrderDate() {
-        return orderDate;
+    public String getDate() {
+        return date;
     }
 
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
-    }
-
-    public List<CartItem> getCartItems() {
-        return cartItems;
-    }
-
-    public void setCartItems(List<CartItem> cartItems) {
-        this.cartItems = cartItems;
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public double getTotalPrice() {
@@ -47,5 +50,13 @@ public class Order {
 
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public List<CartItem> getCartItems() {
+        return cartItems;
+    }
+
+    public void setCartItems(List<CartItem> cartItems) {
+        this.cartItems = cartItems;
     }
 }

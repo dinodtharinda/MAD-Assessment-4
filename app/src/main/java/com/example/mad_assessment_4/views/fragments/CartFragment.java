@@ -27,6 +27,7 @@ import com.example.mad_assessment_4.utils.OrderManager;
 import com.example.mad_assessment_4.views.LoginActivity;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -110,7 +111,7 @@ public class CartFragment extends Fragment {
         List<CartItem> cartItems = CartManager.getInstance().getCartItems();
         double totalPrice = CartManager.getInstance().getTotalPrice();
 
-        OrderManager.getInstance().placeOrder(userId, cartItems, totalPrice);
+        OrderManager.getInstance().placeOrder(userId,cartItems,totalPrice);
 
         // Clear the cart
         CartManager.getInstance().clearCart();

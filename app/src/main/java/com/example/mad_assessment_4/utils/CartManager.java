@@ -58,16 +58,5 @@ public class CartManager {
         return totalPrice;
     }
 
-    public Order placeOrder(int userId) {
-        Date orderDate = new Date(); // Current date and time
-        double totalPrice = getTotalPrice();
-        Order order = new Order(userId, orderDate, new ArrayList<>(cartItems), totalPrice);
 
-        // Clear the cart after placing the order
-        clearCart();
-
-        // Here you can add code to save the order to a database or perform any other necessary actions
-
-        return order;
-    }
 }
