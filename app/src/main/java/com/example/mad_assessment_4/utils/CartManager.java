@@ -1,9 +1,11 @@
 package com.example.mad_assessment_4.utils;
 
 import com.example.mad_assessment_4.data.models.CartItem;
+import com.example.mad_assessment_4.data.models.Order;
 import com.example.mad_assessment_4.data.models.Pizza;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class CartManager {
@@ -46,5 +48,26 @@ public class CartManager {
                 return;
             }
         }
+    }
+
+    public double getTotalPrice() {
+        double totalPrice = 0.0;
+        for (CartItem item : cartItems) {
+            totalPrice += item.getPizza().getPrice() * item.getQuantity();
+        }
+        return totalPrice;
+    }
+
+    public Order placeOrder(int userId) {
+        Date orderDate = new Date(); // Current date and time
+        double totalPrice = getTotalPrice();
+        Order order = new Order(userId, orderDate, new ArrayList<>(cartItems), totalPrice);
+
+        // Clear the cart after placing the order
+        clearCart();
+
+        // Here you can add code to save the order to a database or perform any other necessary actions
+
+        return order;
     }
 }

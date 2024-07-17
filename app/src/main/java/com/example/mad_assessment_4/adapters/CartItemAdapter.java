@@ -24,9 +24,10 @@ import java.util.List;
 public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartItemViewHolder> {
 
     private List<CartItem> cartItems;
-
-    public CartItemAdapter(List<CartItem> cartItems) {
+    private final Runnable updateTotalPriceCallback;
+    public CartItemAdapter(List<CartItem> cartItems, Runnable updateTotalPriceCallback) {
         this.cartItems = cartItems;
+        this.updateTotalPriceCallback = updateTotalPriceCallback;
     }
 
     @NonNull
@@ -53,6 +54,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartIt
                 CartManager.getInstance().removeFromCart(cartItem.getPizza());
                 notifyItemRemoved(position);
                 notifyItemRangeChanged(position, cartItems.size());
+                updateTotalPriceCallback.run();
             }
         });
 

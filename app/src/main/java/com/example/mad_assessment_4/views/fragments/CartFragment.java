@@ -13,14 +13,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.mad_assessment_4.R;
 import com.example.mad_assessment_4.adapters.CartItemAdapter;
 import com.example.mad_assessment_4.data.models.CartItem;
+import com.example.mad_assessment_4.data.models.Order;
 import com.example.mad_assessment_4.data.models.Pizza;
 import com.example.mad_assessment_4.utils.CartManager;
 import com.example.mad_assessment_4.utils.Constants;
 import com.example.mad_assessment_4.utils.Helper;
+import com.example.mad_assessment_4.utils.OrderManager;
 import com.example.mad_assessment_4.views.LoginActivity;
 
 import java.util.ArrayList;
@@ -40,6 +43,10 @@ public class CartFragment extends Fragment {
     CartItemAdapter cartItemAdapter;
     List<CartItem> cartItemList;
     Intent loginScreen;
+
+    Button btnPlaceOrder;
+
+    TextView tvTotalPrice;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -51,7 +58,16 @@ public class CartFragment extends Fragment {
         btnLogin = view.findViewById(R.id.btnLogin);
         loginScreen = new Intent(getActivity(), LoginActivity.class);
         recyclerView = view.findViewById(R.id.recyclerViewCart);
+        btnPlaceOrder = view.findViewById(R.id.buttonPlaceOrder);
+        userId =  Helper.getIntFromSharedPref(getActivity(), Constants.USER_ID);
+        tvTotalPrice = view.findViewById(R.id.tvTotalPrice);
 
+        btnPlaceOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               placeOrder();
+            }
+        });
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +78,7 @@ public class CartFragment extends Fragment {
         });
 
 
-        userId =  Helper.getIntFromSharedPref(getActivity(), Constants.USER_ID);
+
         if(userId>0){
             clScreen.setVisibility(View.VISIBLE);
             rlLoginMsg.setVisibility(View.INVISIBLE);
@@ -79,10 +95,39 @@ public class CartFragment extends Fragment {
         // Assuming cartItemList is populated with data
         cartItemList = CartManager.getInstance().getCartItems(); // Method to create dummy data
 
-        cartItemAdapter = new CartItemAdapter(cartItemList);
+        cartItemAdapter = new CartItemAdapter(cartItemList,this::updateTotalPrice);
         recyclerView.setAdapter(cartItemAdapter);
 
+        tvTotalPrice.setText("Total Amount Rs "+String.valueOf(CartManager.getInstance().getTotalPrice()));
+
         return view;
+    }
+
+
+
+    private void placeOrder() {
+        int userId = 1; // Replace with the actual user ID
+        List<CartItem> cartItems = CartManager.getInstance().getCartItems();
+        double totalPrice = CartManager.getInstance().getTotalPrice();
+
+        OrderManager.getInstance().placeOrder(userId, cartItems, totalPrice);
+
+        // Clear the cart
+        CartManager.getInstance().clearCart();
+
+        // Update the UI
+        updateTotalPrice();
+        cartItemAdapter.notifyDataSetChanged();
+        // Notify the RecyclerView adapter to update the UI
+        // recyclerViewCart.getAdapter().notifyDataSetChanged();
+
+        // Show a confirmation message or navigate to another screen
+        // ...
+    }
+
+    private void updateTotalPrice() {
+        double totalPrice = CartManager.getInstance().getTotalPrice();
+        tvTotalPrice.setText("Total Price: Rs" + totalPrice);
     }
 
     private List<CartItem> createDummyCartItems() {
