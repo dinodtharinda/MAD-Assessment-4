@@ -20,12 +20,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.mad_assessment_4.R;
 import com.example.mad_assessment_4.controllers.CustomerController;
+import com.example.mad_assessment_4.data.models.Customer;
 import com.example.mad_assessment_4.utils.Constants;
 import com.example.mad_assessment_4.utils.Helper;
 import com.example.mad_assessment_4.utils.Permissions;
@@ -41,6 +43,8 @@ public class ProfileFragment extends Fragment {
 
     int userId ;
     CustomerController customerController;
+
+    EditText etName,etPhone,etAddress,etEmail,etPassword;
 
     ConstraintLayout clScreen;
 
@@ -59,6 +63,11 @@ public class ProfileFragment extends Fragment {
         clScreen = view.findViewById(R.id.clScreen);
         rlLoginMsg = view.findViewById(R.id.rlLoginMsg);
         btnLogin = view.findViewById(R.id.btnLogin);
+
+        etName = view.findViewById(R.id.etName);
+        etEmail = view.findViewById(R.id.etEmail);
+        etAddress = view.findViewById(R.id.etAddress);
+        etPhone = view.findViewById(R.id.etPhone);
 
         loginScreen = new Intent(getActivity(), LoginActivity.class);
 
@@ -96,18 +105,30 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+
+
         if(userId>0){
+            loadUserData();
             clScreen.setVisibility(View.VISIBLE);
             loadProfileImage(Integer.toString(userId));
             rlLoginMsg.setVisibility(View.INVISIBLE);
-        }
-
-        else{
+        } else{
             clScreen.setVisibility(View.INVISIBLE);
             rlLoginMsg.setVisibility(View.VISIBLE);
         }
         return view;
     }
+
+   private void loadUserData(){
+        String email = Helper.getStringFromSharedPref(getActivity(),Constants.EMAIL);
+       Customer customer = customerController.getCustomerDetails(email);
+
+       etName.setText(customer.getName());
+       etPhone.setText(customer.getPhone());
+       etAddress.setText(customer.getAddress());
+       etEmail.setText(customer.getEmail());
+
+   }
     private void loadProfileImage(String imageName) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             // Use MediaStore API for Android Q and above

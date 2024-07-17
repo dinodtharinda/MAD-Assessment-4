@@ -23,5 +23,10 @@ public class CustomerRepo {
 
     }
 
+    public Customer getCustomerByById(String email){
+        return dbHelper.getCustomerByEmail(email);
+    }
+
+
 
 }

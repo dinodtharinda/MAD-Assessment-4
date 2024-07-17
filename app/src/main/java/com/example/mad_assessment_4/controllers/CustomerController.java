@@ -52,5 +52,9 @@ public class CustomerController {
        Helper.clearSharedPreferences(context);
     }
 
+    public  Customer getCustomerDetails(String email){
+       return customerRepo.getCustomerByById(email);
+    }
+
 
 }

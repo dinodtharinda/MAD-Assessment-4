@@ -2,26 +2,23 @@ package com.example.mad_assessment_4.utils;
 
 import android.Manifest;
 import android.app.Activity;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+
+import com.example.mad_assessment_4.views.fragments.ProfileFragment;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
 
 public class Helper {
 

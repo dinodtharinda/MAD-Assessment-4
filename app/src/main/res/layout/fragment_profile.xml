@@ -10,7 +10,6 @@
         android:id="@+id/clScreen"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/tbProfile"
             app:title="Profile"
@@ -20,8 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
-
-
         <ImageView
             android:id="@+id/ivProfile"
             android:layout_width="90dp"
@@ -33,9 +30,7 @@
             android:scaleType="centerCrop"
             app:layout_constraintTop_toBottomOf="@id/tbProfile" />
 
-
         <LinearLayout
-
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -73,6 +68,8 @@
                     android:layout_height="50dp"
                     android:importantForAutofill="no"
                     tools:ignore="LabelFor" />
+
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -108,22 +105,7 @@
                     tools:ignore="LabelFor" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tlPassword"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:padding="0dp"
-                android:hint="@string/password"
-                android:textColorHint="@color/lightGrey">
 
-                <EditText
-                    android:id="@+id/etPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:importantForAutofill="no"
-                    android:inputType="textPassword"
-                    tools:ignore="LabelFor" />
-            </com.google.android.material.textfield.TextInputLayout>
             <Button
                 android:id="@+id/btnSaveProfile"
                 android:layout_width="match_parent"
@@ -152,39 +134,33 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <RelativeLayout
+        android:id="@+id/rlLoginMsg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="visible">
 
-  <RelativeLayout
-      android:id="@+id/rlLoginMsg"
-      android:visibility="visible"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:gravity="center"
-      >
-      <TextView
-          android:id="@+id/tvMsg"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:gravity="center"
-          android:text="You are not logged in, Please login to continue"
-          android:textSize="17sp"
-          android:textColor="@color/lightGrey"
-          
-          />
-      <Button
-          android:id="@+id/btnLogin"
-          android:layout_width="match_parent"
-          android:layout_height="60dp"
-          android:text="@string/login"
-          android:textSize="17sp"
-          app:cornerRadius="5dp"
-          android:textStyle="bold"
-          android:layout_margin="10dp"
-          android:layout_below="@id/tvMsg"
-          />
-  </RelativeLayout>
+        <TextView
+            android:id="@+id/tvMsg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="You are not logged in, Please login to continue"
+            android:textColor="@color/lightGrey"
+            android:textSize="17sp"
 
+            />
 
-
-
-
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@id/tvMsg"
+            android:layout_margin="10dp"
+            android:text="@string/login"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:cornerRadius="5dp" />
+    </RelativeLayout>
 </FrameLayout>

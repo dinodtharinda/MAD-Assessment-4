@@ -69,6 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                       etEmail.setText("");
                       etPassword.setText("");
                       startActivity(homeScreen);
+                      Helper.saveStringToSharedPref(LoginActivity.this,Constants.EMAIL,email);
                       finish();
                   }else{
                       Toast.makeText(LoginActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();

@@ -14,6 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.mad_assessment_4.R;
 import com.example.mad_assessment_4.controllers.Controller;
 import com.example.mad_assessment_4.data.models.Pizza;
+import com.example.mad_assessment_4.utils.CartManager;
 import com.example.mad_assessment_4.utils.Helper;
 
 public class PizzaDetailsActivity extends AppCompatActivity {
@@ -33,6 +34,7 @@ public class PizzaDetailsActivity extends AppCompatActivity {
     private int quantity = 1;
 
     Controller controller;
+    Pizza pizza;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,14 +101,14 @@ public class PizzaDetailsActivity extends AppCompatActivity {
         buttonAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Handle add to cart action
-                // Example: add the pizza to the cart with the specified quantity
+                CartManager.getInstance().addToCart(pizza,quantity);
+                finish();
             }
         });
     }
 
     private void loadData(int id){
-       Pizza pizza = controller.getPizzaDetailsById(id);
+        pizza = controller.getPizzaDetailsById(id);
 
         textViewPizzaName.setText(pizza.getName());
         textViewPizzaDescription.setText(pizza.getDescription());
