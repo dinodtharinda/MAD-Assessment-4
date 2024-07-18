@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,7 +44,7 @@ public class AdminHomeFragment extends Fragment {
         Toolbar toolbar = view.findViewById(R.id.toolbar);
         ((AdminHomeActivity) getActivity()).setSupportActionBar(toolbar);
         toolbar.setTitle("Admin Home");
-
+        toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), R.color.white));
         ((AdminHomeActivity) getActivity()).getSupportActionBar().setTitle("Home");
         setHasOptionsMenu(true);
         Intent pizzaHome = new Intent(getActivity(), PizzaHomeActivity.class);

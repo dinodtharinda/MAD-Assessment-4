@@ -11,7 +11,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         android:theme="?attr/actionBarTheme"
-        android:backgroundTint="@color/white"
+
         android:elevation="4dp" />
 
     <androidx.recyclerview.widget.RecyclerView

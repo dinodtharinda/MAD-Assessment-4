@@ -4,4 +4,24 @@
         <item name="android:textSize">18sp</item> <!-- Adjust the text size as needed -->
         <item name="android:textColor">@android:color/black</item> <!-- Adjust the text color as needed -->
     </style>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here -->
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@android:color/white</item> <!-- Change this to your desired title color -->
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+    </style>
+
+    <!-- Customize the ActionBar -->
+    <style name="MyActionBar" parent="@style/Widget.AppCompat.ActionBar">
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="android:titleTextStyle">@style/MyActionBarTitleText</item>
+    </style>
+
+    <!-- Customize the ActionBar title text -->
+    <style name="MyActionBarTitleText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@android:color/white</item> <!-- Change this to your desired title color -->
+    </style>
 </resources>

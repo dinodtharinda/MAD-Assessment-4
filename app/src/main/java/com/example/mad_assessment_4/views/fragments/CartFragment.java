@@ -3,7 +3,9 @@ package com.example.mad_assessment_4.views.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,6 +26,7 @@ import com.example.mad_assessment_4.utils.CartManager;
 import com.example.mad_assessment_4.utils.Constants;
 import com.example.mad_assessment_4.utils.Helper;
 import com.example.mad_assessment_4.utils.OrderManager;
+import com.example.mad_assessment_4.views.DashboardActivity;
 import com.example.mad_assessment_4.views.LoginActivity;
 
 import java.util.ArrayList;
@@ -62,7 +65,11 @@ public class CartFragment extends Fragment {
         btnPlaceOrder = view.findViewById(R.id.buttonPlaceOrder);
         userId =  Helper.getIntFromSharedPref(getActivity(), Constants.USER_ID);
         tvTotalPrice = view.findViewById(R.id.tvTotalPrice);
-
+        Toolbar toolbar = view.findViewById(R.id.toolbar);
+        ((DashboardActivity) getActivity()).setSupportActionBar(toolbar);
+        toolbar.setTitle("Cart");
+        toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), R.color.white));
+        ((DashboardActivity) getActivity()).getSupportActionBar().setTitle("Cart");
         btnPlaceOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

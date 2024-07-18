@@ -15,6 +15,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -53,15 +54,14 @@ public class HomeFragment extends Fragment {
 
 
         controller = new Controller(getActivity());
+
         loadPizzaData();
+
         Toolbar toolbar = view.findViewById(R.id.toolbar);
         ((DashboardActivity) getActivity()).setSupportActionBar(toolbar);
         toolbar.setTitle("Home");
-
+        toolbar.setTitleTextColor(ContextCompat.getColor(getActivity(), R.color.white));
         ((DashboardActivity) getActivity()).getSupportActionBar().setTitle("Home");
-
-
-
 
 
             recyclerView = view.findViewById(R.id.recyclerView);
@@ -69,14 +69,6 @@ public class HomeFragment extends Fragment {
             adapter = new MyGridAdapter(getActivity(), pizzaList); // Initialize your custom adapter
             recyclerView.setAdapter(adapter);
 
-
-
-
-
-        // Handle menu item clicks
-
-
-//        tvHome = view.findViewById(R.id.tvHome);
 
         int userId = Helper.getIntFromSharedPref(getActivity(), Constants.USER_ID);
 
