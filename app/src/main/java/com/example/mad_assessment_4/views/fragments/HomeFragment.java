@@ -59,9 +59,9 @@ public class HomeFragment extends Fragment {
         toolbar.setTitle("Home");
 
         ((DashboardActivity) getActivity()).getSupportActionBar().setTitle("Home");
-        setHasOptionsMenu(true);
 
-        Intent pizzaHome = new Intent(getActivity(), PizzaHomeActivity.class);
+
+
 
 
             recyclerView = view.findViewById(R.id.recyclerView);
@@ -74,18 +74,7 @@ public class HomeFragment extends Fragment {
 
 
         // Handle menu item clicks
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                if (item.getItemId() == R.id.action_settings) {
-                    // Handle settings button click
-                    return true;
-                }else if(item.getItemId() == R.id.pizza_button){
-                    startActivity(pizzaHome);
-                }
-                return false;
-            }
-        });
+
 
 //        tvHome = view.findViewById(R.id.tvHome);
 
@@ -106,9 +95,5 @@ public class HomeFragment extends Fragment {
         pizzaList = controller.getAllPizza();
     }
 
-    @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_home, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
+
 }

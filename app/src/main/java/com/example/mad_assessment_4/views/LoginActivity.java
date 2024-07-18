@@ -40,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
 
         Intent registerScreen = new Intent(this,RegisterActivity.class);
         Intent homeScreen = new Intent(this, DashboardActivity.class);
+        Intent adminHome = new Intent(this, AdminHomeActivity.class);
 
         btnGoRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,20 +62,29 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               if(validateFields()){
-                   String email = etEmail.getText().toString();
-                   String password = etPassword.getText().toString();
-                  boolean isLog = customerController.loginCustomer(email,password,LoginActivity.this);
-                  if(isLog){
-                      etEmail.setText("");
-                      etPassword.setText("");
-                      startActivity(homeScreen);
-                      Helper.saveStringToSharedPref(LoginActivity.this,Constants.EMAIL,email);
-                      finish();
-                  }else{
-                      Toast.makeText(LoginActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
-                  }
-               }
+                String email = etEmail.getText().toString();
+                String password = etPassword.getText().toString();
+                if (email.equals("admin@gmail.com") && password.equals("1234")) {
+                    // Admin login
+                    startActivity(adminHome); // Replace adminScreen with your Intent for admin panel
+                    Helper.saveStringToSharedPref(LoginActivity.this, Constants.EMAIL, email);
+                    Helper.saveIntToSharedPref(LoginActivity.this, Constants.USER_ID, 1000);
+                    finish();
+                } else {
+                    if (validateFields()) {
+
+                        boolean isLog = customerController.loginCustomer(email, password, LoginActivity.this);
+                        if (isLog) {
+                            etEmail.setText("");
+                            etPassword.setText("");
+                            startActivity(homeScreen);
+                            Helper.saveStringToSharedPref(LoginActivity.this, Constants.EMAIL, email);
+                            finish();
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
 
             }
         });

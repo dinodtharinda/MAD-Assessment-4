@@ -74,7 +74,11 @@ public class OrdersFragment extends Fragment {
 
     private void setupRecyclerView() {
         recyclerViewOrders.setLayoutManager(new LinearLayoutManager(getActivity()));
-        orderList = OrderManager.getInstance().getOrders();
+        if(userId == 1000){
+            orderList = OrderManager.getInstance().getOrders();
+        }else{
+            orderList = OrderManager.getInstance().getOrdersByUserId(userId);
+        }
 
         Log.e("Oder id length",String.valueOf(orderList.size()));
         orderAdapter = new OrderAdapter(orderList);

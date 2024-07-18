@@ -107,7 +107,7 @@ public class CartFragment extends Fragment {
 
 
     private void placeOrder() {
-        int userId = 1; // Replace with the actual user ID
+         // Replace with the actual user ID
         List<CartItem> cartItems = CartManager.getInstance().getCartItems();
         double totalPrice = CartManager.getInstance().getTotalPrice();
 

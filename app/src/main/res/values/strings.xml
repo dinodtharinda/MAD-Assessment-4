@@ -21,4 +21,6 @@
     <string name="description">description</string>
     <string name="price">price</string>
     <string name="save_pizza">Save Pizza</string>
+    <string name="message">Message</string>
+    <string name="pizza">Pizza</string>
 </resources>

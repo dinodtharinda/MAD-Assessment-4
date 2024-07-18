@@ -5,6 +5,7 @@ import android.content.Context;
 import com.example.mad_assessment_4.data.models.Pizza;
 import com.example.mad_assessment_4.data.repositories.CustomerRepo;
 import com.example.mad_assessment_4.data.repositories.Repository;
+import com.example.mad_assessment_4.utils.Helper;
 
 import java.util.List;
 
@@ -29,5 +30,8 @@ public class Controller {
 
     public Pizza getPizzaDetailsById(int id){
         return repository.getPizzaDetailById(id);
+    }
+    public void logout(Context context){
+        Helper.clearSharedPreferences(context);
     }
 }

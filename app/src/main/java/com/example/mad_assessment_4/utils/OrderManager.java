@@ -47,12 +47,23 @@ public class OrderManager {
         CartManager.getInstance().clearCart();
     }
 
+
     public List<Order> getOrdersByUserId(int userId) {
+        // Log filter initiation
+        Log.d("OrderManager", "Filtering orders for userId: " + userId);
+
         // Filter orders by userId
-        return orders.stream()
-                .filter(order -> order.getUserId() == userId)
+        List<Order> filteredOrders = orders.stream()
+                .filter(order -> {
+                    Log.d("OrderManager", "Checking order userId: " + order.getUserId());
+                    return order.getUserId() == userId;
+                })
                 .collect(Collectors.toList());
+
+        Log.d("OrderManager", "Filtered orders for userId " + userId + ": " + filteredOrders);
+        return filteredOrders;
     }
+
 
     public List<Order> getOrders() {
         return orders;
